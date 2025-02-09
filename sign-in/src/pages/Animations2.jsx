@@ -4,7 +4,7 @@ import ScrollIndicator from "../animations/ScrollIndicator";
 import LazyLoadContent from "../animations/LazyLoadContent";
 import LightBox from "../animations/LightBox";
 
-export default function SkeletonScreen() {
+export default function Animations2() {
   const [loading, setLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(true);
   const imageUrl = "pix.jpg";

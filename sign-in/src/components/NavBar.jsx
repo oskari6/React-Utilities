@@ -34,6 +34,16 @@ export default function NavBar() {
               <Link to="/animations2">Animations 2</Link>
             </nav>
           </li>
+          <li className="py-2">
+            <nav>
+              <Link to="/parallax">Parallax</Link>
+            </nav>
+          </li>
+          <li className="py-2">
+            <nav>
+              <Link to="/animations3">Animations 3</Link>
+            </nav>
+          </li>
         </ul>
       </SidePanel>
     </div>
