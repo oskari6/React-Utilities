@@ -11,6 +11,10 @@ import {
   RotateCard,
 } from "../animations/CardAnimations";
 import { useState } from "react";
+import {
+  FixedToTopButton,
+  NormalToTopButton,
+} from "../animations/BackToTopButton";
 
 export default function Adnimations() {
   const [progress, setProgress] = useState(30);
@@ -40,67 +44,76 @@ export default function Adnimations() {
     },
   ];
   return (
-    <div className="flex justify-center items-center h-screen flex-col gap-2">
-      {notification && (
-        <NotificationBanner
-          message={notification.message}
-          type={notification.type}
-          onClose={() => setNotification(null)}
+    <>
+      <div className="flex justify-center items-center h-screen flex-col gap-2">
+        {notification && (
+          <NotificationBanner
+            message={notification.message}
+            type={notification.type}
+            onClose={() => setNotification(null)}
+          />
+        )}
+        <h1>Animations Page</h1>
+        <ZoomCard>test</ZoomCard>
+        <SlideTextCard>test</SlideTextCard>
+        <RotateCard>test</RotateCard>
+        <TiltCard>test</TiltCard>
+
+        <div>
+          <button
+            className="px-4 py-2 bg-green-500 text-black rounded"
+            onClick={() => showNotification("success", "Operation successful!")}
+          >
+            Show Success
+          </button>
+
+          <button
+            className="px-4 py-2 bg-red-500 text-black rounded"
+            onClick={() => showNotification("error", "Something went wrong!")}
+          >
+            Show Error
+          </button>
+
+          <button
+            className="px-4 py-2 bg-yellow-500 text-black rounded"
+            onClick={() => showNotification("warning", "This is a warning!")}
+          >
+            Show Warning
+          </button>
+
+          <button
+            className="px-4 py-2 bg-blue-500 text-black rounded"
+            onClick={() => showNotification("info", "Here's some info!")}
+          >
+            Show Info
+          </button>
+        </div>
+        <div className="flex flex-col items-center justify-center h-screen gap-4">
+          <ProgressBar progress={progress} />
+          <button
+            className="px-4 py-2 bg-blue-500 text-black rounded"
+            onClick={() => setProgress((prev) => (prev >= 100 ? 0 : prev + 10))}
+          >
+            Increase Progress
+          </button>
+        </div>
+        <Accordion items={accordionItems} />
+        <ToolTip text="Tooltip here" position="top">
+          <button>Hover me</button>
+        </ToolTip>
+        <DropDownMenu
+          title="Select an Option"
+          items={["Profile", "Settings", "Logout"]}
+          onSelect={handleSelect}
         />
-      )}
-      <h1>Animations Page</h1>
-      <ZoomCard>test</ZoomCard>
-      <SlideTextCard>test</SlideTextCard>
-      <RotateCard>test</RotateCard>
-      <TiltCard>test</TiltCard>
-
-      <div>
-        <button
-          className="px-4 py-2 bg-green-500 text-black rounded"
-          onClick={() => showNotification("success", "Operation successful!")}
-        >
-          Show Success
-        </button>
-
-        <button
-          className="px-4 py-2 bg-red-500 text-black rounded"
-          onClick={() => showNotification("error", "Something went wrong!")}
-        >
-          Show Error
-        </button>
-
-        <button
-          className="px-4 py-2 bg-yellow-500 text-black rounded"
-          onClick={() => showNotification("warning", "This is a warning!")}
-        >
-          Show Warning
-        </button>
-
-        <button
-          className="px-4 py-2 bg-blue-500 text-black rounded"
-          onClick={() => showNotification("info", "Here's some info!")}
-        >
-          Show Info
-        </button>
       </div>
-      <div className="flex flex-col items-center justify-center h-screen gap-4">
-        <ProgressBar progress={progress} />
-        <button
-          className="px-4 py-2 bg-blue-500 text-black rounded"
-          onClick={() => setProgress((prev) => (prev >= 100 ? 0 : prev + 10))}
-        >
-          Increase Progress
-        </button>
+      <div className="bg-gray-200 h-[900px] flex justify-end items-end">
+        <NormalToTopButton />
+        <NormalToTopButton animated={false} />
       </div>
-      <Accordion items={accordionItems} />
-      <ToolTip text="Tooltip here" position="top">
-        <button>Hover me</button>
-      </ToolTip>
-      <DropDownMenu
-        title="Select an Option"
-        items={["Profile", "Settings", "Logout"]}
-        onSelect={handleSelect}
-      />
-    </div>
+      <div className="bg-gray-200 h-[900px] flex justify-end items-end">
+        <FixedToTopButton />
+      </div>
+    </>
   );
 }
